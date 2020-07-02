@@ -32,7 +32,7 @@ android {
 
 dependencies {
     api(project(":sentry-android-core"))
-    api(project(":sentry-android-ndk"))
+ //   api(project(":sentry-android-ndk"))
 }
 
 //TODO: move these blocks to parent gradle file, DRY

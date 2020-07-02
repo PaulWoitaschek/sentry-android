@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "io.sentry.sample"
-        minSdkVersion(Config.Android.minSdkVersionNdk)
+        minSdkVersion(21)
         targetSdkVersion(Config.Android.targetSdkVersion)
         versionCode = 2
         versionName = "1.1.0"
@@ -47,13 +47,6 @@ android {
         includeInBundle = false
     }
 
-    externalNativeBuild {
-        cmake {
-            version = Config.Android.cmakeVersion
-            setPath("CMakeLists.txt")
-        }
-    }
-
     signingConfigs {
         getByName("debug") {
             storeFile = rootProject.file("debug.keystore")
@@ -84,10 +77,13 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled = true
     }
 }
 
 dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.0.9")
+
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
     implementation(project(":sentry-android"))
